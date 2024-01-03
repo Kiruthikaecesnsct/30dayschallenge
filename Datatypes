@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+	
+    public static void main(String[] args) {
+        int i = 4;
+        double d = 4.0;
+        String s = "HackerRank ";
+		
+        Scanner scan = new Scanner(System.in);
+
+        /* Declare second integer, double, and String variables. */
+        int inputInt = 0;
+        double inputDouble = 0d;
+        String inputString = "";
+
+        /* Read and save an integer, double, and String to your variables.*/
+        while(scan.hasNextInt()){
+            inputInt = scan.nextInt();
+        }
+        while(scan.hasNextDouble()){
+            inputDouble = scan.nextDouble();
+        }
+        while(scan.hasNextLine()){
+            inputString = scan.nextLine();
+        }
+        // Note: If you have trouble reading the entire String, please go back and review the Tutorial closely.
+        
+        /* Print the sum of both integer variables on a new line. */
+        System.out.printf("%d%n", inputInt = inputInt + (int)Math.ceil(d));
+
+        /* Print the sum of the double variables on a new line. */
+		System.out.printf("%.1f%n",inputDouble +=d);
+        /* Concatenate and print the String variables on a new line; 
+        	the 's' variable above should be printed first. */
+        System.out.println(s += inputString);
+        scan.close();
+    }
+}
