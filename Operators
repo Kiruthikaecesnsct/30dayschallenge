@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args)
+    {
+        Scanner in=new Scanner(System.in);
+        double cost=in.nextDouble();
+        int tip=in.nextInt();
+        int tax=in.nextInt();
+        double tipcost=(cost/100)*tip;
+        double taxcost=(cost/100)*tax;
+        double total=cost+tipcost+taxcost;
+        System.out.println(Math.round(total));
+    }
+}
