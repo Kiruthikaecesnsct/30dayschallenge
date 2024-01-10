@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String A = sc.nextLine();
+        String C = ",'!?.@_ ";
+        StringTokenizer st = new StringTokenizer(A,C);
+        int B = st.countTokens();
+        System.out.println(B);
+        //for (int i=1; i<=B; i++)
+        //{
+            //if (st.hasMoreTokens())
+            while (st.hasMoreTokens())
+            System.out.println(st.nextToken());
+            //else{}
+       // }
+        sc.close();
+    }
+}
