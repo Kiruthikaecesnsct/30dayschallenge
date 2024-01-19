@@ -1,0 +1,68 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+// Attempt to optimize to reduce calculations by storing totals of components of hourglasses
+// into top and bottom (triples), and center
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        // The center 4x4 elements from 6x6 input
+        List<List<Integer>> centers = new ArrayList<>();
+                
+        // Size will be 4x6 elements where each element is a top or bottom hourglass sum
+        List<List<Integer>> tripleTotals = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            String[] arrRowTempItems = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+            
+            
+            List<Integer> centerRowItems = (i > 0 && i < 5) ? new ArrayList<>() :  null;            
+            List<Integer> tripleRowTotals= new ArrayList<>();
+
+            List<Integer> buffer= new ArrayList<>();
+
+            for (int j = 0; j < 6; j++) {
+                buffer.add(Integer.parseInt(arrRowTempItems[j]));
+                                
+                // Collect centers of hourglasses, only need elements inset from edge of matrix
+                if (j > 0 && j < 5 && centerRowItems != null){                    
+                    centerRowItems.add(buffer.get(buffer.size()-1));
+                }                
+                                
+                // Collect triplets sums for top and bottoms of hourglass
+                if (j > 1){
+                    tripleRowTotals.add(buffer.stream().mapToInt(Integer::intValue).sum());
+                    buffer.remove(0);                    
+                }                
+            }
+            
+            if (centerRowItems != null){                    
+                centers.add(centerRowItems);                    
+            }            
+            tripleTotals.add(tripleRowTotals);
+        }
+
+        bufferedReader.close();
+                
+        int max_val = Integer.MIN_VALUE;                
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                
+                // Top, middle, and bottom hourglass
+                int val = tripleTotals.get(i).get(j) + // Top
+                    centers.get(i).get(j) +
+                    tripleTotals.get(i+2).get(j);
+                                                    
+                if (val > max_val) max_val = val;
+            }
+        }
+        
+        System.out.println(max_val);
+        
+    }
+}
