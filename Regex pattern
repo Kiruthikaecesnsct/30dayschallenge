@@ -1,0 +1,41 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<String> users = new ArrayList();
+        int N = Integer.parseInt(bufferedReader.readLine().trim());
+        String regex = "^([a-z.]{1,20}@)(gmail.com)$";
+        String regex2 = "^[a-z]{1,20}$";
+        Pattern pattern = Pattern.compile(regex);
+        Pattern pattern2 = Pattern.compile(regex2);
+        
+        for (int NItr = 0; NItr < N; NItr++) {
+            String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+            String firstName = firstMultipleInput[0];
+            Matcher matcher2 = pattern2.matcher(firstName);
+            String emailID = firstMultipleInput[1];
+            Matcher matcher = pattern.matcher(emailID);
+            
+            if(matcher.find() && matcher2.find()) {
+                users.add(firstName);
+            }
+        }
+
+        bufferedReader.close();
+        Collections.sort(users);
+            for(String s : users) {
+                System.out.println(s);
+            }
+         
+    }
+}
